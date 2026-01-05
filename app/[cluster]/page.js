@@ -2,8 +2,9 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { taxContent } from '@/lib/content';
 
-export function generateMetadata({ params }) {
-    const cluster = taxContent[params.cluster];
+export async function generateMetadata({ params }) {
+    const { cluster: clusterKey } = await params;
+    const cluster = taxContent[clusterKey];
     if (!cluster) return { title: 'Not Found' };
 
     return {
@@ -12,8 +13,9 @@ export function generateMetadata({ params }) {
     };
 }
 
-export default function ClusterPage({ params }) {
-    const cluster = taxContent[params.cluster];
+export default async function ClusterPage({ params }) {
+    const { cluster: clusterKey } = await params;
+    const cluster = taxContent[clusterKey];
 
     if (!cluster) {
         notFound();
@@ -29,7 +31,7 @@ export default function ClusterPage({ params }) {
 
             <div className="card-grid">
                 {cluster.articles.map((article) => (
-                    <Link href={`/${params.cluster}/${article.slug}`} key={article.slug} className="card" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <Link href={`/${clusterKey}/${article.slug}`} key={article.slug} className="card" style={{ textDecoration: 'none', color: 'inherit' }}>
                         <h2>{article.title}</h2>
                         <p>{article.description}</p>
                         <span style={{ color: 'var(--link)', fontWeight: 'bold' }}>Read Article →</span>
