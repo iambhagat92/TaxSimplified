@@ -43,7 +43,7 @@ export default async function ArticlePage({ params }) {
                 />
             </article>
 
-            <ReadMoreLinks currentSlug={slug} cluster={cluster} />
+            <ReadMoreLinks currentSlug={slug} cluster={cluster} clusterKey={clusterKey} />
 
             <div style={{ marginTop: '40px', padding: '20px', background: '#f8f9fa', fontSize: '0.9rem', borderRadius: '8px' }}>
                 <strong>Note:</strong> This article is for educational purposes. <Link href="/disclaimer">Read Disclaimer</Link>.

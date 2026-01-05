@@ -1,4 +1,4 @@
-export default function ReadMoreLinks({ currentSlug, cluster }) {
+export default function ReadMoreLinks({ currentSlug, cluster, clusterKey }) {
     if (!cluster || !cluster.articles) return null;
 
     const currentIndex = cluster.articles.findIndex(a => a.slug === currentSlug);
@@ -12,12 +12,12 @@ export default function ReadMoreLinks({ currentSlug, cluster }) {
             <h3 className="text-lg font-semibold mb-3">Read More</h3>
             <div className="flex flex-col gap-2">
                 {prev && (
-                    <a href={`/${cluster.slug}/${prev.slug}`} className="text-blue-600 hover:underline">
+                    <a href={`/${clusterKey}/${prev.slug}`} className="text-blue-600 hover:underline">
                         ← Previous: {prev.title}
                     </a>
                 )}
                 {next && (
-                    <a href={`/${cluster.slug}/${next.slug}`} className="text-blue-600 hover:underline">
+                    <a href={`/${clusterKey}/${next.slug}`} className="text-blue-600 hover:underline">
                         Next: {next.title} →
                     </a>
                 )}
